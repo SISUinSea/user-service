@@ -38,7 +38,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/join")
     public ResponseEntity<JoinResponse> joinProcess(@Valid @RequestBody JoinRequest joinRequest) {
         JoinResponse response = userService.joinProcess(joinRequest);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -134,4 +134,5 @@ public class UserController {
 
         return new ResponseEntity<>(existAll, HttpStatus.OK);
     }
+
 }

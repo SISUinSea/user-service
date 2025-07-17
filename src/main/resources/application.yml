@@ -6,7 +6,8 @@ spring:
     name: user-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/sejong?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    #    url: jdbc:mysql://localhost:3306/sejong?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://${DATASOURCE_URL_DOMAIN}/${DATASOURCE_URL_SCHEMA}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
@@ -39,6 +40,7 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /swagger-ui.html
+  show-login-endpoint: true
 
 eureka:
   instance:
@@ -47,12 +49,12 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://127.0.0.1:8761@ipaddress/eureka
+      defaultZone: ${EUREKA_DEFAULTZONE}
     enabled: false
 
 
 jwt:
-  secret: apfhdapfhdrnldudnsapxkahddldpdydnglglwkrdmsehffhqustlsgksapxkahd
+  secret: ${JWT_SECRET}
   expiration-time: 36000 # 액세스 토큰 만료 시간: 1시간 (밀리초)
   refresh-expiration-time: 604800000 # 리프레시 토큰 만료 시간: 7일 (밀리초)
 
